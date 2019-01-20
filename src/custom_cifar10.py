@@ -62,9 +62,9 @@ class custom_CIFAR10(data.Dataset):
             file_path = os.path.join(self.root, self.base_folder, file_name)
             with open(file_path, 'rb') as f:
                 if sys.version_info[0] == 2:
-                    entry.pickle.load(f)
+                    entry = pickle.load(f)
                 else:
-                    entry.pickle.load(f, encoding = 'latin1')
+                    entry = pickle.load(f, encoding = 'latin1')
                 
                 self.data.append(entry['data'])
                 if 'labels' in entry:
