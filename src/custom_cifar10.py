@@ -26,11 +26,11 @@ class custom_CIFAR10(data.Dataset):
     filename = 'cifar-10-python.tar.gz'
     
     train_list = [ #fill in the md5 digests  newly created
-        ['data_batch_1', ],
-        ['data_batch_2', ],
-        ['data_batch_3', ],
-        ['data_batch_4', ],
-        ['data_batch_5', ]
+        ['data_batch_1','e3806dc0d2b97bf8851497b5736c31cd'],
+        ['data_batch_2','fa5a1502784686df90efaa433de050be'],
+        ['data_batch_3','a560b2ccff218aadbcd176ba9aa3a194'],
+        ['data_batch_4','113d8032f4609dcf3b605d7d183cfe22'],
+        ['data_batch_5','831a06f01e0169e2fd7493f382016fc8']
     ]
     
     test_list = [
