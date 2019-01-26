@@ -19,18 +19,23 @@ else:
     import pickle
     
 import torch.utils.data as data
-from .utils import check_integrity
+#from .utils import check_integrity
 
 class custom_CIFAR10(data.Dataset):
     base_folder = 'cifar-10-batches-py'
     filename = 'cifar-10-python.tar.gz'
     
     train_list = [ #fill in the md5 digests  newly created
-        ['data_batch_1','e3806dc0d2b97bf8851497b5736c31cd'],
-        ['data_batch_2','fa5a1502784686df90efaa433de050be'],
-        ['data_batch_3','a560b2ccff218aadbcd176ba9aa3a194'],
-        ['data_batch_4','113d8032f4609dcf3b605d7d183cfe22'],
-        ['data_batch_5','831a06f01e0169e2fd7493f382016fc8']
+        #['data_batch_1','e3806dc0d2b97bf8851497b5736c31cd'],
+        #['data_batch_2','fa5a1502784686df90efaa433de050be'],
+        #['data_batch_3','a560b2ccff218aadbcd176ba9aa3a194'],
+        #['data_batch_4','113d8032f4609dcf3b605d7d183cfe22'],
+        #['data_batch_5','831a06f01e0169e2fd7493f382016fc8']
+        ['data_batch_1', 'c99cafc152244af753f735de768cd75f'],
+        ['data_batch_2', 'd4bba439e000b95fd0a9bffe97cbabec'],
+        ['data_batch_3', '54ebc095f3ab1f0389bbae665268c751'],
+        ['data_batch_4', '634d18415352ddfa80567beed471001a'],
+        ['data_batch_5', '482c414d41f54cd18b22e5b47cb7c3cb'],
     ]
     
     test_list = [
@@ -40,7 +45,7 @@ class custom_CIFAR10(data.Dataset):
     meta = {
         'filename': 'batches.meta',
         'key': 'label_names',
-        'md5': ''# fill in the md5 after modification
+        'md5': '8b08ce5b9915f51e560b77c3aace54ca'# fill in the md5 after modification
     }
         
     def __init__(self, root, train = True, transform = None, target_transform = None, download = False):
@@ -103,17 +108,6 @@ class custom_CIFAR10(data.Dataset):
     
     def __len__(self):
         return len(self.data)
-    
-    def _check_integrity(self):
-        root = self.root
-        
-        for fentry in (self.train_list + self.test_list):
-            filename, md5 = fentry[0], fentry[1]
-            fpath = os.path.join(root, self.base_folder, filename)
-            if not check_integrity(fpath, md5):
-                return False
-        return True
-        
     def __repr__(self):
         fmt_str = 'Dataset' + self.__class__.__name__ + '\n'
         fmt_str += ' Number od datapoints: {}\n'.format(self.__len__())

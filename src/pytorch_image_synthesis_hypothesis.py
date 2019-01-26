@@ -15,13 +15,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch.optim as optim
 import time
+from datetime import datetime
+from custom_cifar10 import custom_CIFAR10
 
 #torch.set_printoptions(precision=10)
 
 epochs = 300
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-logfile_name = 'log_file_gpu1_ep300_different_conv_params_200_neurons.txt'
+time_now = str(datetime.now())
+
+logfile_name = 'log_file_gpu1_ep300_different_conv_params_200_neurons_custom_cifar10{0}.txt'.format(time_now)
+#logfile_name = 'log_file_gpu1_ep300_different_conv_params_200_neurons_test_custom_data.txt'
 log_statement = "This is CNN test on gpu CIFAR10 database for a different set of parameters.\n"
 f = open(logfile_name, 'w+')
 f.write(log_statement)
@@ -177,15 +182,15 @@ transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5
 
 
 f.write("Load training data\n")
-trainset = torchvision.datasets.CIFAR10(root = './data', train = True, download = False, transform = transform)
+trainset = custom_CIFAR10(root = './data', train = True, download = False, transform = transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size = 4, shuffle = True, num_workers = 2)
 
 f.write("Load test data:\n")
 #f.write("Testloader params: train = {}, download = {T\n")
-testset = torchvision.datasets.CIFAR10(root = './data', train = False, download = True, transform = transform)
+testset = custom_CIFAR10(root = './data', train = False, download = True, transform = transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size = 4, shuffle = False, num_workers = 2)
 
-classes = ('plane', 'car', 'bird','cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck', 'ship-truck')
+classes = ('plane', 'car', 'bird','cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck', 'ship_truck')
 
 
 def imshow(img):
@@ -206,10 +211,10 @@ print(labels)
 #f.write("sending the training images, labels to gpu")
 #images, labels = images.to(device),labels.to(device)
 
-
+'''
 imshow(torchvision.utils.make_grid(images))
 print(' '.join('%5s' % classes[labels[j]] for j in range(4)))
- 
+''' 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr = learning_rate, momentum = momentum)
 
