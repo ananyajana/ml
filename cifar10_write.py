@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Jan 16 12:10:48 2019
-
+This file is to append the generated/synthesized  images to the original cifar10 data bins
+Input: cifar10 data bin files and the, synthesized images
+Output: the cifar10 databin files will have the new images appended to them which can be checked by the increasein size
 @author: aj611
 """
 
