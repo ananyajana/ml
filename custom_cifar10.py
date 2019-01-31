@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jan 20 11:24:39 2019
+This program does almost the same things as torchvision.datasets.CIFAR10
+except the fact that it suppresses integrity checks. And the md5sums
+corresponding to the 5 data bin files and the batches.meta file have been changed
+according to the md5sums of the modified files.
 
 @author: aj611
 """
@@ -25,17 +29,18 @@ class custom_CIFAR10(data.Dataset):
     base_folder = 'cifar-10-batches-py'
     filename = 'cifar-10-python.tar.gz'
     
+# the modified md5 checksums of the 5 data bin files
     train_list = [ #fill in the md5 digests  newly created
         #['data_batch_1','e3806dc0d2b97bf8851497b5736c31cd'],
         #['data_batch_2','fa5a1502784686df90efaa433de050be'],
         #['data_batch_3','a560b2ccff218aadbcd176ba9aa3a194'],
         #['data_batch_4','113d8032f4609dcf3b605d7d183cfe22'],
         #['data_batch_5','831a06f01e0169e2fd7493f382016fc8']
-        ['data_batch_1', 'c99cafc152244af753f735de768cd75f'],
-        ['data_batch_2', 'd4bba439e000b95fd0a9bffe97cbabec'],
-        ['data_batch_3', '54ebc095f3ab1f0389bbae665268c751'],
-        ['data_batch_4', '634d18415352ddfa80567beed471001a'],
-        ['data_batch_5', '482c414d41f54cd18b22e5b47cb7c3cb'],
+        ['data_batch_1', 'c035d104d9d992c9a846f608c5bb592f'],
+        ['data_batch_2', '53847e3b751a0c88e4a3b56191c6c685'],
+        ['data_batch_3', 'c8da2bf8658620061aebb8d385144e89'],
+        ['data_batch_4', '713833d5dd61942923786619230f8e52'],
+        ['data_batch_5', '8074db856d64a54fe4992859d4b89b50'],
     ]
     
     test_list = [
@@ -45,7 +50,7 @@ class custom_CIFAR10(data.Dataset):
     meta = {
         'filename': 'batches.meta',
         'key': 'label_names',
-        'md5': '8b08ce5b9915f51e560b77c3aace54ca'# fill in the md5 after modification
+        'md5': '6f991d518475b3447f423f525021d5a0' # has the modified md5sum of the bactes.meta file
     }
         
     def __init__(self, root, train = True, transform = None, target_transform = None, download = False):
