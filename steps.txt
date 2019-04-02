@@ -14,3 +14,5 @@
 14. modify batches.meta file to add the new class name
 15. generate md5 digest for each of the 5 data.bin files and the batches.meta file using the command "md5sum <filename>"
 16. modify the checksums in the custom_cifar10.py file
+17. replace the original data.bin files with these new ones.
+18. Run the pytorch_image_syntheis_hypothesis program again.
