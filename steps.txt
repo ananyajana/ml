@@ -1,0 +1,16 @@
+1.ssh into ilab1.cs.rutgers.edu
+2. cd /common/users/aj611/experiments/ml
+3. run pytorch_image_synthesis_hypothesis.py
+4. create a folder ship_plane(because ship and plane classes had maximum nuber of confusions.)
+5. cp /cifar10_images/cifar/train/*ship* /data/ship_plane/
+6. cp /cifar10_images/cifar/train/plane* /data/ship_plane/
+7. change the dataroot variable in dcgan_cifar_ship_truck_synthesis.py file to point to the location where the images from confusing classes are present. specify the complete path
+8. cp generated images to /data/ship_plane_data_bins/gen_images_1000_ship_plane
+9. the generated images have dimension 64x64 because dcgan*.py generates images of 64x64 resolution. Hence we need to resize the images to 32x32 resolution. I ran imgp tool for that alternately we can use python libraries.
+10. cd /data/ship_plane_data_bins/gen_images_1000_ship_plane
+11. cp ../../cifar10_write.py ./
+12. cp /data/cifar-10-batches-py/* ./ 
+13. python3 cifar10_write.py
+14. modify batches.meta file to add the new class name
+15. generate md5 digest for each of the 5 data.bin files and the batches.meta file using the command "md5sum <filename>"
+16. modify the checksums in the custom_cifar10.py file
