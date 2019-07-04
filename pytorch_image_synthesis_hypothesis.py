@@ -3,6 +3,7 @@
 """
 Created on Thu Nov  8 18:22:06 2018
 
+This code is a modified version of the code at https://github.com/pytorch/tutorials/blob/master/beginner_source/blitz/cifar10_tutorial.py
 @author: aj611
 """
 
@@ -16,7 +17,7 @@ import numpy as np
 import torch.optim as optim
 import time
 from datetime import datetime
-from custom_cifar10 import custom_CIFAR10
+#from custom_cifar10 import custom_CIFAR10
 
 #torch.set_printoptions(precision=10)
 
@@ -182,12 +183,16 @@ transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5
 
 
 f.write("Load training data\n")
-trainset = custom_CIFAR10(root = './data', train = True, download = False, transform = transform)
+# this is for our custom cifar after appending the augmented images to the bin file
+#trainset = custom_CIFAR10(root = './data', train = True, download = False, transform = transform)
+trainset = torchvision.datasets.CIFAR10(root = './data', train = True, download = True, transform = transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size = 4, shuffle = True, num_workers = 2)
 
 f.write("Load test data:\n")
 #f.write("Testloader params: train = {}, download = {T\n")
-testset = custom_CIFAR10(root = './data', train = False, download = True, transform = transform)
+# this is for our custom cifar after appending the augmented images to the bin file
+#testset = custom_CIFAR10(root = './data', train = False, download = True, transform = transform)
+testset = torchvision.datasets.CIFAR10(root = './data', train = False, download = True, transform = transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size = 4, shuffle = False, num_workers = 2)
 
 classes = ('plane', 'car', 'bird','cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck', 'ship_truck')
